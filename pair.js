@@ -20,13 +20,13 @@ function removeFile(FilePath){
 router.get('/', async (req, res) => {
     const id = makeid();
     let num = req.query.number;
-        async function GIFTED_MD_PAIR_CODE() {
+        async function SCORPION_MD_PAIR_CODE() {
         const {
             state,
             saveCreds
         } = await useMultiFileAuthState('./temp/'+id)
      try {
-            let Pair_Code_By_Gifted_Tech = Gifted_Tech({
+            let Pair_Code_By_SCORPION_Tech = Gifted_Tech({
                 auth: {
                     creds: state.creds,
                     keys: makeCacheableSignalKeyStore(state.keys, pino({level: "fatal"}).child({level: "fatal"})),
@@ -35,16 +35,16 @@ router.get('/', async (req, res) => {
                 logger: pino({level: "fatal"}).child({level: "fatal"}),
                 browser: ["Chrome (Linux)", "", ""]
              });
-             if(!Pair_Code_By_Gifted_Tech.authState.creds.registered) {
+             if(!Pair_Code_By_SCORPION_Tech.authState.creds.registered) {
                 await delay(1500);
                         num = num.replace(/[^0-9]/g,'');
-                            const code = await Pair_Code_By_Gifted_Tech.requestPairingCode(num)
+                            const code = await Pair_Code_By_SCORPION_Tech.requestPairingCode(num)
                  if(!res.headersSent){
                  await res.send({code});
                      }
                  }
-            Pair_Code_By_Gifted_Tech.ev.on('creds.update', saveCreds)
-            Pair_Code_By_Gifted_Tech.ev.on("connection.update", async (s) => {
+            Pair_Code_By_SCORPION_Tech.ev.on('creds.update', saveCreds)
+            Pair_Code_By_SCORPION_Tech.ev.on("connection.update", async (s) => {
                 const {
                     connection,
                     lastDisconnect
@@ -54,14 +54,14 @@ router.get('/', async (req, res) => {
                 let data = fs.readFileSync(__dirname + `/temp/${id}/creds.json`);
                 await delay(800);
                let b64data = Buffer.from(data).toString('base64');
-               let session = await Pair_Code_By_Gifted_Tech.sendMessage(Pair_Code_By_Gifted_Tech.user.id, { text: '' + b64data });
+               let session = await Pair_Code_By_SCORPION_Tech.sendMessage(Pair_Code_By_SCORPION_Tech.user.id, { text: '' + b64data });
 
                let GIFTED_MD_TEXT = `
-*_Pair Code Connected by ZENITSU*
+*_Pair Code Connected by SCORPION*
 *_Made With 🚬🗿_*
 ______________________________________
 ╔════◇
-║ *『 AMAZING YOU'VE CHOSEN ZENITSU CRASH V2 』*
+║ *『 AMAZING YOU'VE CHOSEN SCORPION CRASH V2 』*
 ║ _You Have Completed the First Step to Deploy a Whatsapp Bot._
 ╚════════════════════════╝
 ╔═════◇
@@ -76,15 +76,15 @@ ______________________________________
 _____________________________________
 
 _Don't Forget To Give Star To My Repo_`
- await Pair_Code_By_Gifted_Tech.sendMessage(Pair_Code_By_Gifted_Tech.user.id,{text:GIFTED_MD_TEXT},{quoted:session})
+ await Pair_Code_By_SCORPION_Tech.sendMessage(Pair_Code_By_SCORPION_Tech.user.id,{text:GIFTED_MD_TEXT},{quoted:session})
  
 
         await delay(100);
-        await Pair_Code_By_Gifted_Tech.ws.close();
+        await Pair_Code_By_SCORPION_Tech.ws.close();
         return await removeFile('./temp/'+id);
             } else if (connection === "close" && lastDisconnect && lastDisconnect.error && lastDisconnect.error.output.statusCode != 401) {
                     await delay(10000);
-                    GIFTED_MD_PAIR_CODE();
+                    SCORPION_MD_PAIR_CODE();
                 }
             });
         } catch (err) {
@@ -95,6 +95,6 @@ _Don't Forget To Give Star To My Repo_`
          }
         }
     }
-    return await GIFTED_MD_PAIR_CODE()
+    return await SCORPION_MD_PAIR_CODE()
 });
 module.exports = router
